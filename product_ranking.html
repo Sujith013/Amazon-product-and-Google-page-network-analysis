@@ -9,14 +9,13 @@
 </head>
 
 <script>
+    
     function read()
     {
     let upload = document.getElementById('data')
     let output = document.getElementById('output')
             
-    let product_id = []
-    let product_name = []
-    let product_rank = []
+    let product_descirption = []
 
     let products = []
 
@@ -37,10 +36,13 @@
             if(z[k]=="\n")
             {
             let y = z.slice(p,k-1).split(" ")
+            
+            product_descirption[i] = []
 
-            product_id[i] = y[0]
-            product_name[i] = y[1]
-            product_rank[i] = y[2]
+            product_descirption[i][1] = y[0]
+            product_descirption[i][2] = y[1]
+            product_descirption[i][0] = parseFloat(y[2])
+            product_descirption[i][3] = y[3]
         
             products[i] = []
 
@@ -57,7 +59,7 @@
             }
         }
 
-        while(z[k]!=null)
+    while(z[k]!=null)
         {
             if(z[k]=="\n")
             {
@@ -74,36 +76,91 @@
             k+=1
         }
 
-        console.log(products)
+        product_description = product_descirption.sort().reverse()
+
+        main_div = document.getElementById('products')
+
+        for(i in product_descirption)
+        {
+            main_li = document.createElement("div")
+            pp2 = document.createElement("h4")
+            p2 = document.createTextNode("frequently bought with")
+
+            main_li.id="fbw"
+
+            pp2.append(p2)
+            main_li.append(pp2)
+        
+            for(x in products[i])
+            {
+                li = document.createElement("a")
+                li.href = "#" +  product_descirption[products[i][x]][2]
+                li.id="li"
+                p1 = document.createTextNode(product_descirption[products[i][x]][2])
+
+                li.append(p1)
+                li.style.color = "rgb(248, 149, 0)"; 
+
+                main_li.append(li)
+            }
+
+            d1 = document.createElement("div")
+            d2 = document.createElement("div")
+            d3 = document.createElement("div")
+
+            e1 = document.createElement("h4")
+            e2 = document.createElement("h4")
+            e3 = document.createElement("h4")
+            e4 = document.createElement("h4")
+
+            e1_txt = document.createTextNode("Name: "+product_descirption[i][2])
+            e2_txt = document.createTextNode("id: "+product_descirption[i][1])
+            e3_txt = document.createTextNode("Price: "+product_descirption[i][3])
+            e4_txt = document.createTextNode("Product Rank: "+product_descirption[i][0])
+
+            e1.appendChild(e1_txt)
+            e2.appendChild(e2_txt)
+            e3.appendChild(e3_txt)
+            e4.appendChild(e4_txt)
+
+            img1 = document.createElement("img")
+            img1.src = "images/"+product_descirption[i][1]+".jpg"
+            img1.alt = product_descirption[i][2]
+
+            br1 = document.createElement("br")
+
+            d1.className = "individual"
+            d1.id = product_descirption[i][2]
+            d3.id = "text"
+            d2.id = "image"
+            img1.id="actual"
+
+            d2.append(img1)
+            d3.append(e1,e2,e3,e4,main_li)
+            d1.append(d2,d3)
+
+            main_div.append(d1,br1,br1)
+        }
     }
+
+    upload.style.display = "none"
 
     }
 </script>
 
 <body>
+
 <div class="basic">
     <h1 style="text-align: center;">SIN - Product Ranking Analyis Webpage</h1>
 
+    <br><br><br><br>
+
+    <div class="products" id="products">
+
+    </div>
+
     <input type="file" name="data" id="data" onchange="read()">
 
-    <p id="output"></p>
-
-<!--    <div class="basic products">
-
-        <div class="mobile" id="0" style="background-color: beige;text-align: center;width: 40%;"> 
-            <img src="images/0.jpg" alt="mobile" width="100%">
-            <p><b>Name:</b> Mobile</p>
-            <p><b>ID:</b> 0</p>
-            <p><b>Price:</b> Rs. 70,000</p>
-        </div>
-
-        <div class="laptop" id="1" style="background-color: beige;text-align: center;">
-            <img src="images/1.jpg" alt="laptop" width="100%">
-            <p><b>Name:</b> laptop</p>
-            <p><b>ID:</b> 1</p>
-            <p><b>Price:</b> Rs. 89,000</p>
-        </div>
--->
     </div>
 </div>
 </body>
