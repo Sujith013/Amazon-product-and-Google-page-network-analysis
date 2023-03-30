@@ -1,0 +1,15 @@
+.basic
+{
+justify-content: center;
+align-items: center;
+text-align: center;
+align-self: center;
+justify-self: center;
+justify-items: center;
+align-content: center;
+}
+
+.products
+{
+    background-color: aliceblue;
+}

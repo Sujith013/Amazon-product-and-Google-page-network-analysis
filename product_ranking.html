@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>SIN</title>
+</head>
+
+<script>
+    function read()
+    {
+    let upload = document.getElementById('data')
+    let output = document.getElementById('output')
+            
+    let product_id = []
+    let product_name = []
+    let product_rank = []
+
+    let products = []
+
+    var fr=new FileReader();
+        
+    fr.readAsText(upload.files[0]);
+
+    var i = 0
+    var k = 0
+    var p = 0
+
+    fr.onload=function()
+    {
+        let z = fr.result;
+
+        while(true)
+        {
+            if(z[k]=="\n")
+            {
+            let y = z.slice(p,k-1).split(" ")
+
+            product_id[i] = y[0]
+            product_name[i] = y[1]
+            product_rank[i] = y[2]
+        
+            products[i] = []
+
+            i+=1
+
+            p = k+1
+            }
+
+            k+=1
+
+            if(i==10)
+            {
+                break
+            }
+        }
+
+        while(z[k]!=null)
+        {
+            if(z[k]=="\n")
+            {
+            let y = z.slice(p,k-1).split(" ")
+            let l = parseInt(y[0])
+            let m = parseInt(y[1])
+
+            products[l][products[l].length] = m
+            products[m][products[m].length] = l
+
+            p = k+1
+            }
+
+            k+=1
+        }
+
+        console.log(products)
+    }
+
+    }
+</script>
+
+<body>
+<div class="basic">
+    <h1 style="text-align: center;">SIN - Product Ranking Analyis Webpage</h1>
+
+    <input type="file" name="data" id="data" onchange="read()">
+
+    <p id="output"></p>
+
+<!--    <div class="basic products">
+
+        <div class="mobile" id="0" style="background-color: beige;text-align: center;width: 40%;"> 
+            <img src="images/0.jpg" alt="mobile" width="100%">
+            <p><b>Name:</b> Mobile</p>
+            <p><b>ID:</b> 0</p>
+            <p><b>Price:</b> Rs. 70,000</p>
+        </div>
+
+        <div class="laptop" id="1" style="background-color: beige;text-align: center;">
+            <img src="images/1.jpg" alt="laptop" width="100%">
+            <p><b>Name:</b> laptop</p>
+            <p><b>ID:</b> 1</p>
+            <p><b>Price:</b> Rs. 89,000</p>
+        </div>
+-->
+    </div>
+</div>
+</body>
+</html>
+
