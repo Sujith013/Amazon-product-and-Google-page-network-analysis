@@ -279,31 +279,3 @@ amz_path_length = amz_path_length[!amz_path_length==-1]
 boxplot(g_path_length,main="google network")
 
 boxplot(amz_path_length,main="amazon network")
-
-
-
-# *********************************** Page_rank Calculation **************************************
-
-
-#create a graph data frame (network)
-amzNet = graph.data.frame(amazon[1:100,],directed = T)
-gNet = graph.data.frame(google[1:100,],directed = T)
-
-amz_page_rank = page_rank(amzNet,vids=V(amzNet),directed=T,damping=0.85)
-g_page_rank = page_rank(gNet,vids=V(gNet),directed=T,damping=0.85)
-
-print(amz_page_rank$vector)
-print(g_page_rank$vector)
-
-amz_page_rank = page_rank(amzNet,vids=V(amzNet),directed=T,damping=0.15)
-g_page_rank = page_rank(gNet,vids=V(gNet),directed=T,damping=0.15)
-
-print(amz_page_rank$vector)
-print(g_page_rank$vector)
-
-barplot(sort(amz_page_rank$vector,decreasing = TRUE)[1:10],ylab='Page Rank',xlab='Vertex',
-        main = 'Top 10 Page ranks',ylim=c(0.017,0.020))
-
-barplot(sort(g_page_rank$vector,decreasing = TRUE)[1:10],ylab='Page Rank',xlab='Vertex',
-        main = 'Top 10 Page ranks',ylim=c(0.013,0.016))
-

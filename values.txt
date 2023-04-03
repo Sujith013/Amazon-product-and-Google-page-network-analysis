@@ -1,19 +1,28 @@
-0 mobile 0.68 70,000
-1 laptop 0.65 89,000
-2 pendrive 0.75 1700
-3 mouse 0.66 800
-4 keyboard 0.78 1200
-5 mouse_pad 0.82 250
-6 charger 0.83 540
-7 airpods 0.95 25,000
-8 extension_chord 0.96 3,000
-9 Hard_disk 0.21 5,400
+5 mouse_pad 0.1542 250
+0 mobile 0.1463 70000
+7 airpods 0.1294 25000
+1 laptop 0.1132 89000
+6 charger 0.1048 540
+4 keyboard 0.0859 1200
+8 extension_chord 0.0811 3000
+9 Hard_disk 0.0811 5400
+2 pendrive 0.0639 1700
+3 mouse 0.0399 800
 0 1
 0 2
 0 3
 0 4
-5 2
-5 4
+0 5
+1 2
+1 4
+1 5
+4 7
 5 6
+5 7
+5 8
+5 9
+7 6
+7 8
+7 9
 6 8
-9 2
+6 9
